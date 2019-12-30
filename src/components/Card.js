@@ -20,7 +20,7 @@ type CardDefaultProps = {
   onClick: (card: CardDescription, faceUp: boolean) => void;
 };
 
-export default class Card extends React.PureComponent<CardDefaultProps, CardProps, void> {
+export default class Card extends React.Component<CardProps, void> {
   static defaultProps = {
     faceUp: false,
     onClick: () => { },
@@ -31,7 +31,7 @@ export default class Card extends React.PureComponent<CardDefaultProps, CardProp
     (this: any).handleClick = this.handleClick.bind(this);
   }
 
-  btn: HTMLButtonElement;
+  btn: ?HTMLButtonElement;
 
   handleClick() {
     if (this.btn) {
@@ -46,25 +46,31 @@ export default class Card extends React.PureComponent<CardDefaultProps, CardProp
       const cardName = this.props.card.getName();
       const cardImage = CardImages.imageForCard(this.props.card);
 
+      const imageUrl = process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}/${cardImage}` : cardImage;
       contents = (
         <img
-          src={`${process.env.PUBLIC_URL}/${cardImage}`}
+          src={imageUrl}
           alt={cardName}
           style={{
             width: '180px',
             height: '250px',
+            border: '2px solid yellow',
+            borderRadius: '8px',
           }}
         />
       );
     } else {
       contents = (
-        <div
+        <img
+          src="cardBackground.png"
+          alt="Card (unknown)"
           style={{
             height: '100%',
             width: '100%',
             backgroundColor: 'blue',
-            borderRadius: '8px',
             margin: 0,
+            border: '2px solid yellow',
+            borderRadius: '8px',
           }}
         />
       );
@@ -77,8 +83,9 @@ export default class Card extends React.PureComponent<CardDefaultProps, CardProp
           width: '180px',
           height: '250px',
           padding: 0,
-          border: 'none',
           perspective: '1000px',
+          background: 'none',
+          border: 'none'
         }}
         onClick={this.handleClick}
         ref={(btn) => { this.btn = btn; }}

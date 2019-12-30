@@ -1,4 +1,4 @@
-#### Exmaple
+#### Example
 
 __1.__ Table with four players and initial 3-card hands.
 

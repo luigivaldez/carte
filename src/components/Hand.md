@@ -1,4 +1,4 @@
-#### Exmaple
+#### Example
 
 __1.__ Three-card hand.
 
@@ -10,7 +10,7 @@ __1.__ Three-card hand.
     new CardDescription('Spade', 7),
     new CardDescription('Denari', 1),
   ];
-  <Hand cards={cards}/>
+  <Hand cards={cards} />
 ```
 
 __2.__ Five-card hand in North position
@@ -25,7 +25,7 @@ __2.__ Five-card hand in North position
     new CardDescription('Spade', 9),
     new CardDescription('Denari', 8),
   ];
-  <Hand cards={cards} position="N"/>
+  <Hand cards={cards} position="N" />
 ```
 
 __2.__ Two-card hand in East position
@@ -37,5 +37,5 @@ __2.__ Two-card hand in East position
     new CardDescription('Spade', 7),
     new CardDescription('Denari', 2),
   ];
-  <Hand cards={cards} position="E"/>
+  <Hand cards={cards} position="E" />
 ```

@@ -9,7 +9,7 @@ type TableProps = {
   hands: Array<Array<CardDescription>>;
 };
 
-export default class Table extends React.PureComponent<TableDefaultProps, TableProps, void> {
+export default class Table extends React.Component<TableProps, void> {
   render() {
     let positions;
     switch (this.props.hands.length) {
@@ -28,7 +28,7 @@ export default class Table extends React.PureComponent<TableDefaultProps, TableP
         break;
     }
     const hands = this.props.hands.map((hand: Array<CardDescription>, player: number) => {
-      return <Hand cards={hand} position={positions[player]} />
+      return <Hand cards={hand} position={positions[player]} key={positions[player]} />
     });
     return (
       <div
@@ -38,6 +38,7 @@ export default class Table extends React.PureComponent<TableDefaultProps, TableP
           display: 'flex',
         }}
       >
+        {hands}
       </div>
     );
   }

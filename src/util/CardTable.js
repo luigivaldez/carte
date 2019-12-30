@@ -25,7 +25,7 @@ export default class CardTable {
         console.log(`Dealing to player ${i + 1}`);
         const nextCard = this.deck.next();
         console.log('The next card from the deck is: ', nextCard.toString().toLocaleLowerCase());
-        this.hands[i].push([nextCard]);
+        this.hands[i].push(nextCard);
 
         console.log(`Dealt the ${nextCard.toString()} to player #${i + 1}.`);
       }
@@ -36,7 +36,7 @@ export default class CardTable {
     return this.deck.size();
   }
 
-  playerHand(player: number): Array<CardDescription> {
+  playerHand(player: number): Array<CardDescription> | null {
     if (player < this.playerCount) {
       return this.hands[player];
     }
@@ -52,10 +52,14 @@ export default class CardTable {
       for (i = 0; i < this.playerCount; i++) {
         console.log(`Dealing to player ${i + 1}`);
         const nextCard = this.deck.next();
-        console.log('The next card from the deck is: ', nextCard.toString().toLocaleLowerCase());
-        this.hands[i].push([nextCard]);
+        if (nextCard) {
+          console.log('The next card from the deck is: ', nextCard.toString().toLocaleLowerCase());
+          this.hands[i].push(nextCard);
 
-        console.log(`Dealt the ${nextCard.toString()} to player #${i + 1}.`);
+          console.log(`Dealt the ${nextCard.toString()} to player #${i + 1}.`);
+        } else {
+          console.log('The deck was out of cards!!');
+        }
       }
     }
   }

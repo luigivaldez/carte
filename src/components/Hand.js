@@ -18,14 +18,14 @@ type HandDefaultProps = {
   position: 'N' | 'E' | 'S' | 'W';
 };
 
-export default class Hand extends React.PureComponent<void, HandProps, void> {
+export default class Hand extends React.Component<HandProps, void> {
   static defaultProps = {
     position: 'S',
   };
 
   render() {
     const cardComps = this.props.cards.map((card: CardDescription) => {
-      return <Card card={card} faceUp />;
+      return <Card card={card} faceUp key={card.getName()} />;
     });
     let angle;
     switch (this.props.position) {
